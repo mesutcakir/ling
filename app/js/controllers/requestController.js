@@ -1,7 +1,7 @@
 (() => {
     'use strict'
-    
-    window.app.controller('RequestCtrl', ['$scope', '$rootScope', '$timeout', 'requestService', 'historyService', ($scope, $rootScope, $timeout, requestService, historyService) => {
+
+    window.app.controller('RequestCtrl', ['$scope', '$rootScope', '$timeout', 'requestService', 'historyService','$translate', ($scope, $rootScope, $timeout, requestService, historyService,$translate) => {
 
         const contentTypeSelectionShouldVisible = () => {
             if ($scope.selectedMethod == METHOD_GET || $scope.selectedMethod == METHOD_HEAD) {
@@ -65,7 +65,11 @@
 
             return params;
         }
-
+        $scope.lang = "tr";
+        $scope.changeLang = (lang) => {
+          $translate.use(lang);
+          $scope.lang=lang;
+        }
         // URL
         $scope.url = '';
 
@@ -86,7 +90,7 @@
             }
         }
 
-        // HEADERS 
+        // HEADERS
         $scope.headers = {};
 
         $scope.newHeaderName = '';
@@ -139,7 +143,7 @@
             }
         }
 
-        // PAYLOAD 
+        // PAYLOAD
         $scope.payload = '';
 
         $scope.payloadFormShouldEnable = () => {
@@ -247,7 +251,7 @@
             $scope.headers['Content-Type'] = CONTENT_TYPE_FILE;
         }
 
-        // AUTH 
+        // AUTH
         $scope.authUser = '';
         $scope.authPass = '';
 

@@ -1,9 +1,8 @@
 <div ng-controller="RequestCtrl" class="request-container">
     <div class="scope-header">
-        <i class="fa fa-paper-plane-o" aria-hidden="true"></i> REQUEST
-        <div class="buttons">
-            <button type="button" class="btn btn-link btn-sm" ng-click="clear()" title="Clear all"><i class="fa fa-2x fa-eraser" aria-hidden="true"></i></button>
-        </div>
+        <i class="fa fa-paper-plane-o" aria-hidden="true" ng-show="lang!='tr'"  ng-click="changeLang('tr')" ></i>
+        <i class="fa fa-paper-plane-o" aria-hidden="true" ng-show="lang!='en'"  ng-click="changeLang('en')" ></i>
+        <span translate="REQUEST"><span>
     </div>
     <div class="row row1">
         <div class="col-sm-12">
@@ -11,7 +10,7 @@
                 <div class="input-group input-group-lg">
                     <input type="url" class="form-control" placeholder="http://" required ng-model="url">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit"> Send</button>
+                        <button class="btn btn-primary" type="submit" translate="Send"> </button>
                     </span>
                 </div>
             </form>
@@ -23,7 +22,7 @@
         </div>
         <div class="col-sm-8" ng-show="contentTypeSelectionShouldVisible()">
             <select class="form-control input-lg" ng-model="headers['Content-Type']" ng-options="x for x in contentTypes" ng-change="contentTypeSelectionChanged()">
-                <option value="" selected>Content Type: None</option>
+                <option value="" selected>{{"Content Type"|translate}}: None</option>
             </select>
         </div>
     </div>
@@ -32,19 +31,19 @@
             <div class="tabs">
                 <div class="btn-group btn-group-justified">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='headers'?'active':''" ng-click="selectTab('headers')">Headers <span class="label" ng-class="(headers | objLength)?'active':''">{{ (headers | objLength) }}</span></button>
+                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='headers'?'active':''" ng-click="selectTab('headers')"><span translate="Headers"></span> <span class="label" ng-class="(headers | objLength)?'active':''">{{ (headers | objLength) }}</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='payload'?'active':''" ng-click="selectTab('payload')">Payload</button>
+                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='payload'?'active':''" ng-click="selectTab('payload')" translate="Payload"></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='params'?'active':''" ng-click="selectTab('params')">Data form <span class="label" ng-class="params.length && paramsFormShouldEnable()?'active':''">{{ params.length }}</span></button>
+                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='params'?'active':''" ng-click="selectTab('params')"><span translate="Data Form"></span> <span class="label" ng-class="params.length && paramsFormShouldEnable()?'active':''">{{ params.length }}</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='files'?'active':''" ng-click="selectTab('files')">Files <span class="label" ng-class="files.length?'active':''">{{ files.length }}</span></button>
+                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='files'?'active':''" ng-click="selectTab('files')"><span translate="Files"></span> <span class="label" ng-class="files.length?'active':''">{{ files.length }}</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='auth'?'active':''" ng-click="selectTab('auth')">Auth <span class="label" ng-class="authUser || authPass?'active':''"><i class="fa fa-check"></i></span></button>
+                        <button type="button" class="btn btn-default btn-lg" ng-class="selectedTab=='auth'?'active':''" ng-click="selectTab('auth')"><span translate="Auth"></span>  <span class="label" ng-class="authUser || authPass?'active':''"><i class="fa fa-check"></i></span></button>
                     </div>
                 </div>
             </div>
@@ -52,7 +51,7 @@
                 <table class="table">
                     <tbody>
                         <tr ng-show="(headers | objLength)==0">
-                            <td>Empty</td>
+                            <td translate="Empty Headers"></td>
                         </tr>
                         <tr ng-repeat="(name, value) in headers">
                             <td>

@@ -56,6 +56,7 @@
 
         $scope.reset();
 
+
         $scope.$on("response", (event, headers, body, statusCode) => {
             $scope.headers = headers;
             $scope.statusCode = statusCode;
